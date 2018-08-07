@@ -24,7 +24,7 @@ int binary_search_helper(T key, const std::vector<T> &v, int start, int end, Com
     if (v[mid] == key) { return mid; }
 
     /* if key is less than midpoint */
-    if (comp(v[mid], key))
+    if (comp(key, v[mid]))
     {
         std::cout << "Searching left subarray...\n";
         return binary_search_helper(key, v, start, mid-1, comp);
@@ -50,10 +50,10 @@ void print_vector(const std::vector<T> &v, int midpoint, int start, int end)
         std::cout << v[i] << " ";
     }
     std::cout << "]\n";
-    int pos = 2 + midpoint*2;
-    for (int i = 0; i < pos; ++i)
-    {
-        std::cout << " ";
-    }
-    std::cout << "^\n";
+    // int pos = 2 + (midpoint-start)*2;
+    // for (int i = 0; i < pos; ++i)
+    // {
+    //     std::cout << " ";
+    // }
+    // std::cout << "^\n";
 }
