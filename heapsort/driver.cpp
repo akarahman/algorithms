@@ -1,4 +1,5 @@
 #include <fstream>
+#include <cassert>
 #include "heapsort.h"
 
 int main(int argc, char const *argv[])
@@ -10,7 +11,7 @@ int main(int argc, char const *argv[])
     }
 
     std::ifstream infile;
-    int val;
+    int val, last;
     std::vector<int> v;
     for (int i = 1; i < argc; ++i)
     {
@@ -35,6 +36,13 @@ int main(int argc, char const *argv[])
             std::cout << v[j] << " ";
         }
         std::cout << "]\n\n";
+
+        last = v[0];
+        for (int k = 1; k < v.size(); ++k)
+        {
+            assert(v[k] >= last);
+            last = v[k];
+        }
 
         infile.close();
         v.clear();

@@ -34,7 +34,7 @@ template <class T> void sift_down(std::vector<T> &v, int node, int size)
 
         if (v[child] > v[node])
         {
-            std::cout << v[node] << " violates heap property. Sifting down...\n";
+            std::clog << v[node] << " violates heap property. Sifting down...\n";
 
             /* swap nodes */
             std::swap(v[node], v[child]);
@@ -47,7 +47,7 @@ template <class T> void sift_down(std::vector<T> &v, int node, int size)
 
 template <class T> void heapify(std::vector<T> &v)
 {
-    std::cout << "building heap...\n";
+    std::clog << "building heap...\n";
     for (int i = v.size()/2 - 1; i >= 0; --i)
     {
         sift_down(v, i, v.size());
@@ -57,7 +57,7 @@ template <class T> void heapify(std::vector<T> &v)
 template <class T> void heapsort(std::vector<T> &v)
 {
     heapify(v);
-    std::cout << "sorting vector...\n";
+    std::clog << "sorting vector...\n";
     int size = v.size();
     while (size > 1)
     {
