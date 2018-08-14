@@ -97,6 +97,7 @@ template <class T> void mergesort_helper(std::vector<T> &v, int start, int end, 
 
 template <class T> void mergesort(std::vector<T> &v)
 {
+    if (v.empty()) return;
     int num_comp = 0;
     mergesort_helper(v, 0, v.size()-1, num_comp);
     std::cout << "num comparisons: " << num_comp << "\n";

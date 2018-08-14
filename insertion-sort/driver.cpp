@@ -2,6 +2,8 @@
 #include <cassert>
 #include "insertion_sort.h"
 
+void assert_order(std::vector<int> &v);
+
 int main(int argc, char const *argv[])
 {
     if (argc < 2)
@@ -11,7 +13,7 @@ int main(int argc, char const *argv[])
     }
 
     std::fstream infile;
-    int val, last;
+    int val;
     std::vector<int> v;
     for (int i = 1; i < argc; ++i)
     {
@@ -37,16 +39,22 @@ int main(int argc, char const *argv[])
         }
         std::cout << "]\n\n";
 
-        last = v[0];
-        for (int k = 1; k < v.size(); ++k)
-        {
-            assert(v[k] >= last);
-            last = v[k];
-        }
+        assert_order(v);
 
         infile.close();
         v.clear();
     }
 
     return 0;
+}
+
+void assert_order(std::vector<int> &v)
+{
+    if (v.empty()) return;
+    int last = v[0];
+    for (int k = 1; k < v.size(); ++k)
+    {
+        assert(v[k] >= last);
+        last = v[k];
+    }
 }

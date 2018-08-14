@@ -66,6 +66,7 @@ void print_vect(std::vector<int> &v)
 
 void assert_order(std::vector<int> &v)
 {
+    if (v.empty()) return;
     int last = v[0];
     for (int k = 1; k < v.size(); ++k)
     {
