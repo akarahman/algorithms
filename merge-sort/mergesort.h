@@ -33,6 +33,13 @@ template <class T> void mergesort_helper(std::vector<T> &v, int start, int end);
  */
 template <class T> void mergesort(std::vector<T> &v);
 
+/*
+ * Modifies: v
+ * Effects: sorts v
+ */
+template <class T> void bottom_up_mergesort(std::vector<T> &v);
+
+
 template <class T> void merge(std::vector<T> &v, int start1, int start2, int end2)
 {
     // for debugging purposes only
@@ -88,4 +95,21 @@ template <class T> void mergesort_helper(std::vector<T> &v, int start, int end)
 template <class T> void mergesort(std::vector<T> &v)
 {
     mergesort_helper(v, 0, v.size()-1);
+}
+
+template <class T> void bottom_up_mergesort(std::vector<T> &v)
+{
+    int end;
+    // for subarrays of size 1, 2, 4, ... , N-1
+    for (int i = 1; i < v.size(); i *= 2)
+    {
+        // for each pair of subarrays of size i
+        // skip subarray if does not have another to merge with
+        for (int j = 0; j < v.size()-i; j += i*2)
+        {
+            // if one subarray is less than the size of the subarray, take whats left
+            end = (j+(i*2) > v.size()) ? v.size() : j+(i*2);
+            merge(v, j, j+i, end);
+        }
+    }
 }
