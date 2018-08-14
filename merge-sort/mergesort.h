@@ -42,6 +42,7 @@ template <class T> void bottom_up_mergesort(std::vector<T> &v);
 
 template <class T> void merge(std::vector<T> &v, int start1, int start2, int end2)
 {
+    if (v[start2-1] <= v[start2]) return;
     // for debugging purposes only
     std::clog << "merging subarrays ";
     print_vect(std::clog, v, start1, start2-1);
