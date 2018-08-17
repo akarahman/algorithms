@@ -2,6 +2,7 @@
 
 int recursive_solve (int n)
 {
+    // base cases
     if (n == 1) return 1;
     if (n == 2) return 2;
     if (n == 3) return 4;
@@ -22,6 +23,7 @@ int dp_td_helper (int n, int* a)
 {
     if (a[n-1] == 0)
     {
+        // calculate if lookup fails
         a[n-1] = dp_td_helper(n-1, a) + dp_td_helper(n-2, a) + dp_td_helper(n-3, a);
     }
     return a[n-1];
