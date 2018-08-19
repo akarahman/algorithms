@@ -7,12 +7,12 @@ CFLAGS=-g -Wall -std=c++11
 # flags to pass to compiler
 FILES=driver.cpp solution.cpp
 
-all: triple_step
+all: program
 
-triple_step: $(FILES) solution.h
+program: $(FILES) solution.h
 	$(CC) $(CFLAGS) $(FILES) -o $@
 
 .PHONY: clean
 
 clean:
-	rm triple_step
+	rm program

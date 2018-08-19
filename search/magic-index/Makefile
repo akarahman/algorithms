@@ -7,12 +7,12 @@ CFLAGS=-g -Wall -std=c++11
 # flags to pass to compiler
 FILES=driver.cpp solution.cpp
 
-all: magic_index
+all: program
 
-magic_index: $(FILES) solution.h
+program: $(FILES) solution.h
 	$(CC) $(CFLAGS) $(FILES) -o $@
 
 .PHONY: clean
 
 clean:
-	rm magic_index
+	rm program
