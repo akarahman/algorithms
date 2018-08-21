@@ -5,7 +5,7 @@ CC=gcc
 CFLAGS=-g -Wall
 
 # flags to pass to compiler
-FILES=driver.c
+FILES=driver.c solution.c
 
 all: program
 
