@@ -5,7 +5,7 @@ CC=g++
 CFLAGS=-g -Wall -std=c++11
 
 # flags to pass to compiler
-FILES=driver.cpp
+FILES=driver.cpp genperms.cpp
 
 all: program
 
