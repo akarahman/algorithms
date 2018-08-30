@@ -36,5 +36,14 @@ struct verbose
 static const std::vector<int> d = {25, 10, 5, 1};
 static verbose v;
 
+/*
+ * Requires: denom < 4, memo is an amount x 4 matrix
+ * Modifies: memo
+ * Effects: returns the number of ways to make change for amount cents
+ */
 int change_helper(int amount, int denom, std::vector<std::vector<int>> &memo);
+
+/*
+ * Effects: returns the number of ways to make change for n cents
+ */
 int ways(int n);
