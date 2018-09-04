@@ -72,8 +72,6 @@ int main(int argc, char **argv)
 
 void remove_dups(Node* head)
 {
-    if (head->next == nullptr || head == nullptr) { return head; }
-
     std::unordered_map<int, int> hash_map; // temp buffer
     Node* current_node = head;
     Node* prev = nullptr;
