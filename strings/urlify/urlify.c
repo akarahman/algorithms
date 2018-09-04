@@ -34,8 +34,9 @@ int main(int argc, char const *argv[])
 
 void urlify(char* s, size_t size)
 {
-    int end = size-1;
+    int end = size-1; // index of last char in final string
     int i;
+    // scan for spaces to determine length of final string
     for (i = 0; i < size; ++i)
     {
         if (s[i] == ' ') end += 2;
@@ -43,7 +44,9 @@ void urlify(char* s, size_t size)
     
     for (i = size-1; i >= 0; --i)
     {
+        // copy char
         if (s[i] != ' ') s[end--] = s[i];
+        // replace char with "%20"
         else
         {
             s[end--] = '0';
