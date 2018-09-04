@@ -1,7 +1,17 @@
+/*
+ * Problem: Given a string, replace all spaces with "%20" without using extra space.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
-char* urlify(char*, int);
+/*
+ * Requires: s is large enough to store the final string
+ *           size is the true length of s
+ * Modifies: s
+ * Effects: url-ifies s
+ */
+void urlify(char* s, size_t size);
 
 int main(int argc, char const *argv[])
 {
@@ -15,13 +25,14 @@ int main(int argc, char const *argv[])
         getline(&s, &size, infile); // skip \n char
         getline(&s, &size, infile);
         fclose(infile);
-        printf("%s urlified: %s\n", argv[i], urlify(s, size));
+        urlify(s, size);
+        printf("%s urlified: %s\n", argv[i], s);
     }
     return 0;
 }
 
 
-char* urlify(char* s, int size)
+void urlify(char* s, size_t size)
 {
     int end = size-1;
     int i;
@@ -40,6 +51,4 @@ char* urlify(char* s, int size)
             s[end--] = '%';
         }
     }
-
-    return s;
 }
