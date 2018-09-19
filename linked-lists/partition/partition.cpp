@@ -12,7 +12,15 @@ struct node
     node* next;
 };
 
+/*
+ * Modifies: head and/or the list pointed to by head
+ * Effects: partitions the list around x
+ */
 void partition(node* &head, int x);
+
+/*
+ * Effects: prints the list pointed to by head
+ */
 void print_list(node* head);
 
 int main(int argc, char const *argv[])
@@ -49,13 +57,16 @@ int main(int argc, char const *argv[])
 
 void partition(node* &head, int x)
 {
+    // base case
     if (!head || !(head->next)) return;
     node* current = head;
     node* prev = nullptr;
     node* temp;
+    // only want to modify contents when necessary
     bool altered = false;
     while (current)
     {
+        // if node violates the ordering property
         if (current->datum < x && altered)
         {
             prev->next = current->next;

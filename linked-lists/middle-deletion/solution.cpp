@@ -7,7 +7,16 @@ struct node
     node* next;
 };
 
+/*
+ * Requires: head and d is not null
+ * Modifies: head and/or the list pointed to by head
+ * Effects: removes node d from the list
+ */
 void delete_mid(node* &head, node* d);
+
+/*
+ * Effects: prints the list pointed to by head
+ */
 void print_list(node* head);
 
 int main(int argc, char const *argv[])
