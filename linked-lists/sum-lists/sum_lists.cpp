@@ -16,7 +16,15 @@ struct node
     node(int d_in, node* n_in) : datum(d_in), next(n_in) {}
 };
 
+/*
+ * Requires: l1 and l2 represent a valid non-negative integer
+ * Effects: returns the sum of l1 and l2 as a linked list (in reversed order)
+ */
 node* sum_lists(node* l1, node* l2);
+
+/*
+ * Effects: prints the number represented by head
+ */
 void print_number(node* head);
 
 int main(int argc, char const *argv[])
@@ -29,6 +37,8 @@ int main(int argc, char const *argv[])
 
     for (int i = 1; i < argc; ++i)
     {
+        // parse integers and store as reversed linked list
+
         infile.open(argv[i]);
         infile >> n;
         multiplier = pow(10, floor(log10(n)));
@@ -68,9 +78,11 @@ node* sum_lists(node* l1, node* l2)
 {
     int a = 0;
     int b = 0;
-    int multiplier = 1;
+    int multiplier = 1; // list starts with 1's digit
     node* n = l1;
     node* m = l2;
+
+    // convert linked list into integer
     while (n || m)
     {
         if (n)
@@ -85,9 +97,12 @@ node* sum_lists(node* l1, node* l2)
         }
         multiplier *= 10;
     }
+
     int res = a + b;
     int digit;
     node* ret_head = nullptr;
+    
+    // convert integer to list
     while (multiplier)
     {
         digit = res / multiplier;
