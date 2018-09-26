@@ -1,3 +1,7 @@
+/*
+ * Problem: Given access to a node in a linked list, delete it from the list.
+ */
+
 #include <iostream>
 #include <fstream>
 
