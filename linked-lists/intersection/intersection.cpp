@@ -15,6 +15,10 @@ struct node
     node(int d_in, node* n_in) : datum(d_in), next(n_in) {}
 };
 
+/*
+ * Effects: returns the node at which the two lists l1 and l2
+ *          intersect, returns nullptr if they do not intersect.
+ */
 node* intersects(node *l1, node* l2);
 
 int main(int argc, char const *argv[])
@@ -32,6 +36,7 @@ int main(int argc, char const *argv[])
     {
         infile.open(argv[i]);
         infile >> size;
+        // read l1
         for (int j = 0; j < size; ++j)
         {
             infile >> val;
@@ -40,6 +45,7 @@ int main(int argc, char const *argv[])
             else start1 = current;
             tail1 = current;
         }
+        // read l2
         infile >> size;
         for (int j = 0; j < size; ++j)
         {
@@ -49,6 +55,8 @@ int main(int argc, char const *argv[])
             else start2 = current;
             tail2 = current;
         }
+
+        // read intersecting list
         infile >> size;
         infile >> val;
         current = new node(val, nullptr);
@@ -82,12 +90,15 @@ int main(int argc, char const *argv[])
 
 node* intersects(node *l1, node* l2)
 {
+    // if at least one list is empty, they do not intersect
     if (!l1 || !l2) return nullptr;
 
     int l1_len = 0;
     int l2_len = 0;
     node* l1_cur = l1;
     node* l2_cur = l2;
+
+    // get length of lists
     while (1)
     {
         ++l1_len;
@@ -100,9 +111,12 @@ node* intersects(node *l1, node* l2)
         if (l2_cur->next) l2_cur = l2_cur->next;
         else break;
     }
+
+    // if they do not share a tail pointer, they do not intersect
     if (l1_cur != l2_cur) return nullptr;
     l1_cur = l1;
     l2_cur = l2;
+    // advance the node pointer for the longer list
     if (l1_len > l2_len)
     {
         for (int i = 0; i < l1_len-l2_len; ++i) 
@@ -117,6 +131,7 @@ node* intersects(node *l1, node* l2)
             l2_cur = l2_cur->next;
         }
     }
+    // compare each node side by side
     while (l1_cur != l2_cur)
     {
         l1_cur = l1_cur->next;
