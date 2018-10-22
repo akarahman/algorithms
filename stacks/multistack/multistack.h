@@ -9,6 +9,7 @@ public:
     void push (int val);
     void pop();
     void pop_at(int index);
+    int top_at(int index);
     int top();
     size_t get_size();
 private:
@@ -88,8 +89,21 @@ void multistack::pop_at(int index)
     shift(index+1);
 }
 
+int multistack::top_at(int index)
+{
+    if (index < 0 || index >= stack.size() || stack[index].empty())
+    {
+        throw std::out_of_range("index out of range.");
+    }
+    return stack[index].back();
+}
+
 int multistack::top()
 {
+    if (stack[get_substack()].empty())
+    {
+        stack.pop_back();
+    }
     return stack[get_substack()].back();
 }
 
