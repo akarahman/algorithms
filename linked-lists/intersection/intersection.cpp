@@ -36,41 +36,52 @@ int main(int argc, char const *argv[])
     {
         infile.open(argv[i]);
         infile >> size;
-        // read l1
-        for (int j = 0; j < size; ++j)
+
+        if (size)
         {
-            infile >> val;
-            current = new node(val, nullptr);
-            if (start1) tail1->next = current;
-            else start1 = current;
-            tail1 = current;
+            // read l1
+            for (int j = 0; j < size; ++j)
+            {
+                infile >> val;
+                current = new node(val, nullptr);
+                if (start1) tail1->next = current;
+                else start1 = current;
+                tail1 = current;
+            }
         }
+
         // read l2
         infile >> size;
-        for (int j = 0; j < size; ++j)
+        if (size)
         {
-            infile >> val;
-            current = new node(val, nullptr);
-            if (start2) tail2->next = current;
-            else start2 = current;
-            tail2 = current;
+            for (int j = 0; j < size; ++j)
+            {
+                infile >> val;
+                current = new node(val, nullptr);
+                if (start2) tail2->next = current;
+                else start2 = current;
+                tail2 = current;
+            }
         }
 
         // read intersecting list
         infile >> size;
-        infile >> val;
-        current = new node(val, nullptr);
-        if (tail1) tail1->next = current;
-        else start1 = current;
-        if (tail2) tail2->next = current;
-        else start2 = current;
-        tail1 = tail1->next;
-
-        for (int j = 0; j < size-1; ++j)
+        if (size) 
         {
             infile >> val;
             current = new node(val, nullptr);
-            tail1->next = current;
+            if (tail1) tail1->next = current;
+            else start1 = current;
+            if (tail2) tail2->next = current;
+            else start2 = current;
+            tail1 = tail1->next;
+
+            for (int j = 0; j < size-1; ++j)
+            {
+                infile >> val;
+                current = new node(val, nullptr);
+                tail1->next = current;
+            }
         }
 
         res = intersects(start1, start2);
@@ -82,6 +93,7 @@ int main(int argc, char const *argv[])
         start2 = nullptr;
         tail1 = nullptr;
         tail2 = nullptr;
+        infile.close();
     }
 
     return 0;
