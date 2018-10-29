@@ -6,16 +6,56 @@ class multistack
 public:
     multistack ();
     multistack (int size);
+
+    /*
+     * Effects: adds val to stack
+     */
     void push (int val);
+
+    /*
+     * Effects: removes top element from stack
+     */
     void pop();
+
+    /*
+     * Requires: index is ceil(size/stack_size)
+     * Effects: removes top element from stack at index,
+     *          throws error if index out of range
+     */
     void pop_at(int index);
+
+    /*
+     * Requires: index is ceil(size/stack_size)
+     * Effects: returns top element from stack at index,
+     *          throws error if index out of range
+     */
     int top_at(int index);
+
+    /*
+     * Effects: returns top element from stack
+     */
     int top();
+
+    /*
+     * Effects: returns size of stack
+     */
     size_t get_size();
 private:
+
+    /* underlying container */
     std::vector<std::vector<int> > stack;
     int substack_size;
+
+    /*
+     * Effects: returns the index of the top substack
+     */
     int get_substack();
+
+    /*
+     * Requires: index is a non-negative integer
+     * Effects: shifts all elements to the left for substacks index, index + 1, ... , n
+     *          where n is the number of substacks - 1
+     */
     void shift(int index);
 };
 
@@ -85,7 +125,9 @@ void multistack::pop_at(int index)
         stack.pop_back();
         return;
     }
+    // make the bottom element of the next substack the top element of this substack
     stack[index].push_back(stack[index+1].front());
+    // shift all elements that follow
     shift(index+1);
 }
 
