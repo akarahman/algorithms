@@ -17,6 +17,7 @@ int main(int argc, char const *argv[])
     test_pop_at_first();
     test_pop_at_last();
     test_pop_at_mid();
+    test_pop_at_next_to_last_empty();
     return 0;
 }
 
@@ -101,12 +102,16 @@ void test_pop_at_mid()
     assert(stack.top_at(1) == 20);
 }
 
-void test_pop_at_empty()
-{
-    
-}
-
 void test_pop_at_next_to_last_empty()
 {
-    
+    multistack stack;
+    assert(stack.get_size() == 0);
+    for (int i = 0; i < 21; ++i)
+    {
+        stack.push(i);
+    }
+    stack.pop();
+    stack.pop_at(1);
+    assert(stack.get_size() == 19);
+    assert(stack.top_at(1) == 18);
 }

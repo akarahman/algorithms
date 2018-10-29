@@ -72,7 +72,7 @@ void multistack::pop()
 
 void multistack::pop_at(int index)
 {
-    if (index < 0 || index >= stack.size())
+    if (index < 0 || index >= stack.size() || stack[index].empty())
     {
         throw std::out_of_range("index out of range.");
     }
