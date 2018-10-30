@@ -45,5 +45,10 @@ void my_queue::pop()
     {
         transfer_stack();
     }
-    return pop_from.pop();
+    pop_from.pop();
+}
+
+size_t my_queue::get_size()
+{
+    return push_to.size() + pop_from.size();
 }
